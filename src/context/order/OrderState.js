@@ -29,11 +29,13 @@ const OrderState = (props) => {
   const getOrders = async (role, userId) => {
     if (role === 'admin') {
       try {
-        const res = await axios.get('/parcels');
+        const res = await axios.get(
+          'https://obscure-springs-34125.herokuapp.com/parcels'
+        );
 
         dispatch({
           type: GET_ORDERS,
-          payload: res.data.orders,
+          payload: res.data.data,
         });
       } catch (err) {
         dispatch({
@@ -43,11 +45,13 @@ const OrderState = (props) => {
       }
     } else {
       try {
-        const res = await axios.get(`/users/${userId}/parcels`);
+        const res = await axios.get(
+          `https://obscure-springs-34125.herokuapp.com/users/${userId}/parcels`
+        );
 
         dispatch({
           type: GET_ORDERS,
-          payload: res.data.orders,
+          payload: res.data.data,
         });
       } catch (err) {
         dispatch({
@@ -67,16 +71,20 @@ const OrderState = (props) => {
     };
 
     try {
-      const res = await axios.post('/parcels', order, config);
+      const res = await axios.post(
+        'https://obscure-springs-34125.herokuapp.com/parcels',
+        order,
+        config
+      );
 
       dispatch({
         type: CREATE_ORDER,
-        payload: res.data.order,
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response.msg,
+        payload: err.response.error,
       });
     }
   };
@@ -90,7 +98,10 @@ const OrderState = (props) => {
     };
 
     try {
-      const res = await axios.put(`/parcels/${id}/cancel`, config);
+      const res = await axios.put(
+        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/cancel`,
+        config
+      );
 
       if (res.data.success) {
         dispatch({
@@ -101,7 +112,7 @@ const OrderState = (props) => {
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response.msg,
+        payload: err.response,
       });
     }
   };
@@ -116,16 +127,16 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `/parcels/${id}/destination`,
+        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/destination`,
         newDestination,
         config
       );
 
-      dispatch({ type: UPDATE_ORDER, payload: res.data.order });
+      dispatch({ type: UPDATE_ORDER, payload: res.data.data });
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response.msg,
+        payload: err.response,
       });
     }
   };
@@ -139,13 +150,17 @@ const OrderState = (props) => {
     };
 
     try {
-      const res = await axios.put(`/parcels/${id}/status`, newStatus, config);
+      const res = await axios.put(
+        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/status`,
+        newStatus,
+        config
+      );
 
-      dispatch({ type: UPDATE_ORDER, payload: res.data.order });
+      dispatch({ type: UPDATE_ORDER, payload: res.data.data });
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response.msg,
+        payload: err.response,
       });
     }
   };
@@ -160,16 +175,16 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `/parcels/${id}/presentLocation`,
+        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/presentLocation`,
         PresentLocation,
         config
       );
 
-      dispatch({ type: UPDATE_ORDER, payload: res.data.order });
+      dispatch({ type: UPDATE_ORDER, payload: res.data.data });
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response.msg,
+        payload: err.response,
       });
     }
   };

@@ -30,7 +30,7 @@ const UpdateOrder = () => {
   const { presentLocation } = currentLocation;
 
   const onChangeDestination = (e) =>
-    setNewDestination({ description: e.target.value });
+    setNewDestination({ destination: e.target.value });
 
   const onChangeStatus = (e) => setNewstatus({ status: e.target.value });
 

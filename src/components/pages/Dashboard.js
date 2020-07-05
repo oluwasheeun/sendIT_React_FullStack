@@ -5,7 +5,7 @@ import OrderFilter from '../../components/orders/OrderFilter';
 import Orders from '../../components/orders/Orders';
 import AuthContext from '../../context/auth/authContext';
 import UpdateOrder from '../orders/UpdateOrder';
-import OrderContext from '../../context/order/orderContext'
+import OrderContext from '../../context/order/orderContext';
 
 const Dashboard = () => {
   const authcontext = useContext(AuthContext);
@@ -16,6 +16,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     loadUser();
+
     // eslint-disable-next-line
   }, []);
 
@@ -36,8 +37,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      { current && (<UpdateOrder />)}
-      
+      {current && <UpdateOrder />}
     </Fragment>
   );
 };

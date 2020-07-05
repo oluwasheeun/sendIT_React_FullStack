@@ -1,15 +1,18 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import OrderContext from '../../context/order/orderContext';
 
 const OrderFilter = () => {
   const orderContext = useContext(OrderContext);
   const { filtered, filterOrders, clearFilter } = orderContext;
 
+  const [filterSelect, setFilterSelect] = useState('');
+
   const text = useRef('');
 
   useEffect(() => {
     if (filtered === null) {
       text.current.value = '';
+      setFilterSelect('');
     }
   });
 
@@ -19,6 +22,11 @@ const OrderFilter = () => {
     } else {
       clearFilter();
     }
+  };
+
+  const onChangeSelect = (e) => {
+    setFilterSelect(e.target.value);
+    filterOrders(filterSelect);
   };
 
   return (
@@ -32,10 +40,14 @@ const OrderFilter = () => {
           placeholder='Search recipient name or phone number...'
           onChange={onChange}
         />{' '}
-        <select id='select-filter'>
-          <option value='Reset'>Reset</option>
-          <option value='In-Transit'>In-Transit</option>
-          <option value='Delivered'>Delivered</option>
+        <select
+          id='select-filter'
+          value={filterSelect}
+          onChange={onChangeSelect}
+        >
+          <option value=''>Filter Status</option>
+          <option value='In-Transit'>Delivered</option>
+          <option value='Delivered'>In-Transit</option>
         </select>
       </div>
     </div>

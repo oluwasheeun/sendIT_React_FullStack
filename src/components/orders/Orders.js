@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import OrderContext from '../../context/order/orderContext';
 import OrderItem from './OrderItem';
-
 import AuthContext from '../../context/auth/authContext';
+import Spinner from '../layout/Spinner';
 
 const Orders = () => {
   const orderContext = useContext(OrderContext);
@@ -15,7 +15,12 @@ const Orders = () => {
     if (user) {
       getOrders(user.role, user._id);
     }
+    // eslint-disable-next-line
   }, [authContext, user]);
+
+  if (!orders) {
+    return <Spinner />;
+  }
 
   if (orders !== null && orders.length === 0 && !loading) {
     return <h4>Please create order</h4>;

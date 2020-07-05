@@ -62,7 +62,11 @@ export default (state, action) => {
         ...state,
         filtered: state.orders.filter((order) => {
           const regex = new RegExp(`${action.payload}`, 'gi');
-          return order.recipientName.match(regex) || order.phone.match(regex);
+          return (
+            order.recipientName.match(regex) ||
+            order.phone.match(regex) ||
+            order.status.match(regex)
+          );
         }),
       };
     case CLEAR_FILTER:

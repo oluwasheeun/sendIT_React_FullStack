@@ -5,6 +5,10 @@ const OrderSummary = () => {
   const orderContext = useContext(OrderContext);
   const { orders } = orderContext;
 
+  if (!orders) {
+    return '';
+  }
+
   return (
     <div
       className='order-details createOrder'

@@ -32,11 +32,13 @@ const AuthState = (props) => {
     }
 
     try {
-      const res = await axios.get('/auth/me');
+      const res = await axios.get(
+        'https://obscure-springs-34125.herokuapp.com/auth/me'
+      );
 
       dispatch({
         type: USER_LOADED,
-        payload: res.data,
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({ type: AUTH_ERROR });
@@ -52,11 +54,15 @@ const AuthState = (props) => {
     };
 
     try {
-      const res = await axios.post('/auth/register', formData, config);
+      const res = await axios.post(
+        'https://obscure-springs-34125.herokuapp.com/auth/register',
+        formData,
+        config
+      );
 
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data,
+        payload: res.data.token,
       });
 
       loadUser();
@@ -77,11 +83,15 @@ const AuthState = (props) => {
     };
 
     try {
-      const res = await axios.post('/auth/login', formData, config);
+      const res = await axios.post(
+        'https://obscure-springs-34125.herokuapp.com/auth/login',
+        formData,
+        config
+      );
 
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data,
+        payload: res.data.token,
       });
 
       loadUser();
