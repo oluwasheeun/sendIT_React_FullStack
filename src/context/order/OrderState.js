@@ -29,9 +29,7 @@ const OrderState = (props) => {
   const getOrders = async (role, userId) => {
     if (role === 'admin') {
       try {
-        const res = await axios.get(
-          'https://obscure-springs-34125.herokuapp.com/parcels'
-        );
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/parcels`);
 
         dispatch({
           type: GET_ORDERS,
@@ -46,7 +44,7 @@ const OrderState = (props) => {
     } else {
       try {
         const res = await axios.get(
-          `https://obscure-springs-34125.herokuapp.com/users/${userId}/parcels`
+          `${process.env.REACT_APP_API_URL}/users/${userId}/parcels`
         );
 
         dispatch({
@@ -72,7 +70,7 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.post(
-        'https://obscure-springs-34125.herokuapp.com/parcels',
+        `${process.env.REACT_APP_API_URL}/parcels`,
         order,
         config
       );
@@ -99,7 +97,7 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/cancel`,
+        `${process.env.REACT_APP_API_URL}/parcels/${id}/cancel`,
         config
       );
 
@@ -127,7 +125,7 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/destination`,
+        `${process.env.REACT_APP_API_URL}/parcels/${id}/destination`,
         newDestination,
         config
       );
@@ -151,7 +149,7 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/status`,
+        `${process.env.REACT_APP_API_URL}/parcels/${id}/status`,
         newStatus,
         config
       );
@@ -175,7 +173,7 @@ const OrderState = (props) => {
 
     try {
       const res = await axios.put(
-        `https://obscure-springs-34125.herokuapp.com/parcels/${id}/presentLocation`,
+        `${process.env.REACT_APP_API_URL}/parcels/${id}/presentLocation`,
         PresentLocation,
         config
       );
