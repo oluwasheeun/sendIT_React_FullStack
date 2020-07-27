@@ -32,9 +32,7 @@ const AuthState = (props) => {
     }
 
     try {
-      const res = await axios.get(
-        'https://obscure-springs-34125.herokuapp.com/auth/me'
-      );
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/me`);
 
       dispatch({
         type: USER_LOADED,
@@ -55,7 +53,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(
-        'https://obscure-springs-34125.herokuapp.com/auth/register',
+        `${process.env.REACT_APP_API_URL}/auth/register`,
         formData,
         config
       );
@@ -84,7 +82,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(
-        'https://obscure-springs-34125.herokuapp.com/auth/login',
+        `${process.env.REACT_APP_API_URL}/auth/login`,
         formData,
         config
       );
