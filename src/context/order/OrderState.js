@@ -38,7 +38,7 @@ const OrderState = (props) => {
       } catch (err) {
         dispatch({
           type: ORDER_ERROR,
-          payload: err.response,
+          payload: err.response.error,
         });
       }
     } else {
@@ -54,7 +54,7 @@ const OrderState = (props) => {
       } catch (err) {
         dispatch({
           type: ORDER_ERROR,
-          payload: err.response,
+          payload: err.response.error,
         });
       }
     }
@@ -110,7 +110,7 @@ const OrderState = (props) => {
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response,
+        payload: err.response.error,
       });
     }
   };
@@ -134,7 +134,7 @@ const OrderState = (props) => {
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response,
+        payload: err.response.error,
       });
     }
   };
@@ -158,7 +158,7 @@ const OrderState = (props) => {
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response,
+        payload: err.response.error,
       });
     }
   };
@@ -182,7 +182,7 @@ const OrderState = (props) => {
     } catch (err) {
       dispatch({
         type: ORDER_ERROR,
-        payload: err.response,
+        payload: err.response.error,
       });
     }
   };
